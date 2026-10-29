@@ -1,0 +1,3 @@
+<link rel="icon" type="image/png" sizes="32x32" href="assets/img/favicon-32.png?v=30" />
+<link rel="icon" type="image/png" sizes="64x64" href="assets/img/favicon.png?v=30" />
+<link rel="apple-touch-icon" href="assets/img/apple-touch-icon.png?v=30" />
