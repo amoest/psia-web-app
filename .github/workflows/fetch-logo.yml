@@ -1,0 +1,40 @@
+name: Fetch PS IA-ITB logo
+
+on:
+  push:
+    paths: [".github/workflows/fetch-logo.yml"]
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  fetch:
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/checkout@v5
+      - name: Download logo candidates from psiaitb.com
+        run: |
+          mkdir -p assets/source
+          base="https://www.psiaitb.com"
+          for p in assets/img/psia-crest.png assets/img/psia-crest-lg.png assets/img/psia-crest-sm.png \
+                   assets/img/psia-crest.svg assets/img/psia-og.png apple-touch-icon.png \
+                   assets/img/apple-touch-icon.png assets/img/icon-512.png assets/img/icon-192.png \
+                   favicon.png favicon.svg manifest.json manifest.webmanifest site.webmanifest; do
+            out="assets/source/$(echo "$p" | tr '/' '_')"
+            code=$(curl -sSL -m 30 -o "$out" -w "%{http_code}" "$base/$p" || echo 000)
+            type=$(file -b --mime-type "$out" 2>/dev/null)
+            echo "$code $type $p"
+            if [ "$code" != "200" ] || [[ "$type" == text/html* ]]; then rm -f "$out"; fi
+          done
+          # ikon yang dirujuk di HTML halaman utama
+          curl -sSL -m 30 "$base/" | grep -oiE '<link[^>]+(icon|manifest)[^>]*>' > assets/source/head-links.txt || true
+          cat assets/source/head-links.txt
+          ls -la assets/source
+      - name: Commit
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add assets/source
+          git commit -m "Add PS IA-ITB logo source files" || echo "nothing to commit"
+          git push
