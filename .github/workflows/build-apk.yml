@@ -64,7 +64,16 @@ jobs:
         working-directory: android
         run: |
           chmod +x gradlew
-          ./gradlew assembleDebug --no-daemon
+          set +e
+          ./gradlew assembleDebug --no-daemon --stacktrace 2>&1 | tee gradle.log
+          code=${PIPESTATUS[0]}
+          if [ $code -ne 0 ]; then
+            # Kirim ringkasan error sebagai annotation agar terbaca tanpa login
+            grep -E "error:|What went wrong|Could not|Execution failed|> " gradle.log | grep -v "^> Task" | head -40 | while IFS= read -r line; do
+              echo "::error::${line:0:900}"
+            done
+          fi
+          exit $code
 
       - name: Build release APK (signed)
         if: env.HAS_KEYSTORE == 'true'
