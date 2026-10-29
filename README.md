@@ -75,13 +75,15 @@ npx cap sync android
 npx cap open android     # lalu Build > Build APK(s)
 ```
 
-## Mengganti ikon dengan crest resmi
+## Ikon & splash
 
-Ikon saat ini adalah placeholder bola sepak. Setelah ada izin pengurus:
-1. Ganti `assets/icon-only.png` (1024×1024, full bleed) dan `assets/icon-foreground.png`
-   (1024×1024 transparan, logo di tengah ±60% area) dengan crest.
-2. Ganti `assets/splash.png` & `assets/splash-dark.png` (2732×2732) bila perlu.
-3. Jalankan `npm run assets`, commit, push.
+Ikon dan splash memakai crest PS IA-ITB (`assets/source/assets_img_psia-crest.png`, diambil dari
+psiaitb.com oleh workflow `fetch-logo.yml`) di atas latar navy situs (#070C18).
+
+Untuk memperbarui setelah logo di situs berubah:
+1. Jalankan workflow **Fetch PS IA-ITB logo** (tab Actions → Run workflow).
+2. `git pull`, lalu `python3 scripts/make-icons.py && npm run assets`.
+3. Commit & push; APK baru ter-build otomatis.
 
 ## Konfigurasi penting (`capacitor.config.json`)
 
