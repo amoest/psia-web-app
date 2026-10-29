@@ -1,0 +1,30 @@
+<!doctype html>
+<html lang="id">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>Tidak ada koneksi</title>
+  <style>
+    :root{--bg:#070C18;--card:#0F1830;--text:#E8ECF4;--muted:#8A97B3;--accent:#2FD07A}
+    *{box-sizing:border-box}
+    html,body{margin:0;height:100%;background:var(--bg);color:var(--text);font-family:system-ui,-apple-system,"Segoe UI",Roboto,sans-serif}
+    main{min-height:100%;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:32px 24px;text-align:center}
+    .ball{width:72px;height:72px;margin-bottom:24px}
+    h1{font-size:20px;margin:0 0 8px}
+    p{color:var(--muted);font-size:15px;line-height:1.5;max-width:320px;margin:0 0 28px}
+    button{background:var(--accent);color:#04120A;border:0;border-radius:999px;padding:14px 32px;font-size:16px;font-weight:600}
+    button:active{transform:scale(.97)}
+  </style>
+</head>
+<body>
+<main>
+  <svg class="ball" viewBox="0 0 64 64" aria-hidden="true">
+    <circle cx="32" cy="32" r="29" fill="none" stroke="#2FD07A" stroke-width="3"/>
+    <polygon points="32,20 43,28 39,41 25,41 21,28" fill="#2FD07A"/>
+  </svg>
+  <h1>Tidak ada koneksi internet</h1>
+  <p>Aplikasi ini memuat jadwal, hasil, dan statistik langsung dari psiaitb.com. Periksa koneksi Anda lalu coba lagi.</p>
+  <button onclick="location.href='https://www.psiaitb.com/'">Coba lagi</button>
+</main>
+</body>
+</html>

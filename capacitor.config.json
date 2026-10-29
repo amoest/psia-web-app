@@ -1,0 +1,35 @@
+{
+  "appId": "com.psiaitb.community",
+  "appName": "PS IA-ITB",
+  "webDir": "www",
+  "server": {
+    "url": "https://www.psiaitb.com",
+    "cleartext": false,
+    "androidScheme": "https",
+    "allowNavigation": [
+      "psiaitb.com",
+      "*.psiaitb.com"
+    ],
+    "errorPath": "offline.html"
+  },
+  "android": {
+    "allowMixedContent": false,
+    "captureInput": true,
+    "webContentsDebuggingEnabled": false,
+    "backgroundColor": "#070C18"
+  },
+  "plugins": {
+    "SplashScreen": {
+      "launchShowDuration": 1200,
+      "launchAutoHide": true,
+      "backgroundColor": "#070C18",
+      "androidScaleType": "CENTER_CROP",
+      "showSpinner": false
+    },
+    "StatusBar": {
+      "style": "DARK",
+      "backgroundColor": "#070C18",
+      "overlaysWebView": false
+    }
+  }
+}
